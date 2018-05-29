@@ -7,9 +7,27 @@
 </head>
 <body>
 <script>
-var rover,grid;
+var grid;
+var listRovers=[];
+
+
+
+//Create 4 news Rovers and Put Rovers in the 4 cornes in the grid
+listRovers[0]=new Rover("N",0,0,([0,0]));
+listRovers[1]=new Rover("N",9,0,[9,0]);
+listRovers[2]=new Rover("N",0,9,[0,9]);
+listRovers[3]=new Rover("N",9,9,[9,9]);
+
+
+//Create grid and initialize with 4 Rovers in the corners
 grid=createGrid ();
-  testMovement(rover,"lrrbffrlrbfrlffrblfbrlffrlb",grid);
+grid[0][0]=2;
+grid[0][9]=2;
+grid[9][0]=2;
+grid[9][9]=2;
+  
+  
+testMovement(listRovers,"lrrbffrlrlffbrbbflrrlllfbbrllrrbbffbfrlffrblfbrlffrlb",grid);
 
 </script>
 </body>

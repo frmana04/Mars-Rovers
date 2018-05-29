@@ -1,12 +1,13 @@
 // Rover Object Goes Here
 // ======================
 
-var rover={
-direction:"N",
-x:0,
-y:0,
-travelLog:[[0,0]]
-};
+function Rover(direction,x,y,travelLog){
+this.direction="N";
+this.x=x;
+this.y=y;
+this.travelLog=[];
+this.travelLog.push(travelLog);
+}
 
 
 // ======================
@@ -69,11 +70,19 @@ function moveForward(rover,grid){
   {
     case "N":
       if (rover.y!=0){
-        if (grid[rover.x][rover.y-1]==0){
-        
-        rover.y-=1;
-        rover.travelLog.push([rover.x,rover.y]);}
 
+        if (grid[rover.x][rover.y-1]==0){
+
+        grid[rover.x][rover.y]=0; 
+        rover.y-=1;
+        rover.travelLog.push([rover.x,rover.y]);
+        grid[rover.x][rover.y]=2;}
+
+        else if (grid[rover.x][rover.y-1]==2){
+
+          console.log("Error. There is another Rover!");}
+        
+        
         else 
           console.log("Error. There is an obstacle!");}
 
@@ -87,49 +96,69 @@ function moveForward(rover,grid){
     case "E":
        if (rover.x!=9){
        
-        if(grid[rover.x+1][rover.y]==0){
+        if (grid[rover.x+1][rover.y]==0){
+          
+        grid[rover.x][rover.y]=0; 
+        rover.x+=1;
+        rover.travelLog.push([rover.x,rover.y]);
+        grid[rover.x][rover.y]=2;}
 
-          rover.x+=1;
-          rover.travelLog.push([rover.x,rover.y]);}
+        else if (grid[rover.x+1][rover.y]==2){
 
+          console.log("Error. There is another Rover!");}
+        
+        
         else 
           console.log("Error. There is an obstacle!");}
 
       else
         console.log("Error. Out of limits!");
-        
       break;
 
     case "S":
        if (rover.y!=9){
        
-        if(grid[rover.x][rover.y+1]==0){
-        
+        if (grid[rover.x][rover.y+1]==0){
+          
+          grid[rover.x][rover.y]=0; 
           rover.y+=1;
-          rover.travelLog.push([rover.x,rover.y]);}
-
-        else 
-          console.log("Error. There is an obstacle!");}
+          rover.travelLog.push([rover.x,rover.y]);
+          grid[rover.x][rover.y]=2;}
+  
+          else if (grid[rover.x][rover.y+1]==2){
+  
+            console.log("Error. There is another Rover!");}
+          
+          
+          else 
+            console.log("Error. There is an obstacle!");}
+  
         else
-            console.log("Error. Out of limits!");
-        
-      break;
+          console.log("Error. Out of limits!");
+        break;
+
 
     case "W":
         if (rover.x!=0){
         
-          if(grid[rover.x-1][rover.y]==0){
+          if (grid[rover.x-1][rover.y]==0){
           
+            grid[rover.x][rover.y]=0; 
             rover.x-=1;
-            rover.travelLog.push([rover.x,rover.y]);}
-
-          else 
-            console.log("Error. There is an obstacle!");}
-
-        else
-          console.log("Error. Out of limits!");  
-          
-      break;
+            rover.travelLog.push([rover.x,rover.y]);
+            grid[rover.x][rover.y]=2;}
+    
+            else if (grid[rover.x-1][rover.y]==2){
+    
+              console.log("Error. There is another Rover!");}
+            
+            
+            else 
+              console.log("Error. There is an obstacle!");}
+    
+          else
+            console.log("Error. Out of limits!");
+          break;
   
   
     }
@@ -145,70 +174,95 @@ function moveBackward(rover,grid){
     case "N":
       if (rover.y!=9){
       
-        if(grid[rover.x][rover.y+1]==0){
-
+        if (grid[rover.x][rover.y+1]==0){
+          
+          grid[rover.x][rover.y]=0; 
           rover.y+=1;
-          rover.travelLog.push([rover.x,rover.y]);}
-
-        else 
-          console.log("Error. There is an obstacle!");}
-      else
-        console.log("Error. Out of limits!");
-
-      break;
+          rover.travelLog.push([rover.x,rover.y]);
+          grid[rover.x][rover.y]=2;}
+  
+          else if (grid[rover.x][rover.y+1]==2){
+  
+            console.log("Error. There is another Rover!");}
+          
+          
+          else 
+            console.log("Error. There is an obstacle!");}
+  
+        else
+          console.log("Error. Out of limits!");
+        break;
       
     case "E":
        if (rover.x!=0){
        
         if (grid[rover.x-1][rover.y]==0){
-
+          
+          grid[rover.x][rover.y]=0; 
           rover.x-=1;
-          rover.travelLog.push([rover.x,rover.y]);}
-
-        else 
-          console.log("Error. There is an obstacle!");}
-
-       else
-            console.log("Error. Out of limits!");
-            
-      break;
+          rover.travelLog.push([rover.x,rover.y]);
+          grid[rover.x][rover.y]=2;}
+  
+          else if (grid[rover.x-1][rover.y]==2){
+  
+            console.log("Error. There is another Rover!");}
+          
+          
+          else 
+            console.log("Error. There is an obstacle!");}
+  
+        else
+          console.log("Error. Out of limits!");
+        break;
 
     case "S":
        if (rover.y!=0){
        
-        if(grid[rover.x][rover.y-1]==0){
+        if (grid[rover.x][rover.y-1]==0){
 
+          grid[rover.x][rover.y]=0; 
           rover.y-=1;
-          rover.travelLog.push([rover.x,rover.y]);}
-
-        else 
-          console.log("Error. There is an obstacle!");}
-
-      else
-        console.log("Error. Out of limits!");
-
-      break;
+          rover.travelLog.push([rover.x,rover.y]);
+          grid[rover.x][rover.y]=2;}
+  
+          else if (grid[rover.x][rover.y-1]==2){
+  
+            console.log("Error. There is another Rover!");}
+          
+          
+          else 
+            console.log("Error. There is an obstacle!");}
+  
+        else
+          console.log("Error. Out of limits!");
+        break;
 
     case "W":
         if (rover.x!=9){
         
           if (grid[rover.x+1][rover.y]==0){
-
+          
+            grid[rover.x][rover.y]=0; 
             rover.x+=1;
-            rover.travelLog.push([rover.x,rover.y]);}
-
-          else 
-            console.log("Error. There is an obstacle!");}
-
-        else
-          console.log("Error. Out of limits!");
-
-      break;
+            rover.travelLog.push([rover.x,rover.y]);
+            grid[rover.x][rover.y]=2;}
+    
+            else if (grid[rover.x+1][rover.y]==2){
+    
+              console.log("Error. There is another Rover!");}
+            
+            
+            else 
+              console.log("Error. There is an obstacle!");}
+    
+          else
+            console.log("Error. Out of limits!");
+          break;
   }
   
 }
 
-function testMovement(rover,movements,grid){
+function testMovement(listRovers,movements,grid){
 
 var grid;
 
@@ -219,30 +273,32 @@ for (var i=0;i<=movements.length-1;i++){
   switch(movements[i])
   {
     case "l": 
-      turnLeft(rover);
+      turnLeft(listRovers[i%4],grid);
       break;
 
     case "r": 
-      turnRight(rover);
+      turnRight(listRovers[i%4]),grid;
       break;
 
     case "f": 
-      moveForward(rover,grid);
+      moveForward(listRovers[i%4],grid);
       break;
       
     case "b": 
-      moveBackward(rover,grid);
+      moveBackward(listRovers[i%4],grid);
       break;
   }
   
 
 }
 
-for (var i=0;i<=rover.travelLog.length-1;i++)
-  console.log("(" + rover.travelLog[i][0] + "," + rover.travelLog[i][1] + ")");
+for (var j=0;j<=3;j++){
+  console.log("Rover number" + (j+1));
+  for (var i=0;i<=listRovers[j].travelLog.length-1;i++)
+    console.log("(" + listRovers[j].travelLog[i][0] + "," + listRovers[j].travelLog[i][1] + ")");
+  
 }
-
-
+}
 function createGrid ()
 {
   var randonNumber; 
@@ -257,8 +313,9 @@ function createGrid ()
       grid[i][j]=0;
   }
   }
-  grid[0][0]=0;
+  
 
   return grid;
 
 }
+
