@@ -1,6 +1,7 @@
 // Rover Object Goes Here
 // ======================
 
+//Create a constructor for the Rover object
 function Rover(direction,x,y,travelLog){
 this.direction="N";
 this.x=x;
@@ -71,14 +72,14 @@ function moveForward(rover,grid){
     case "N":
       if (rover.y!=0){
 
-        if (grid[rover.x][rover.y-1]==0){
+        if (grid[rover.x][rover.y-1]==0){  //if rover will go inside grid
 
-        grid[rover.x][rover.y]=0; 
-        rover.y-=1;
-        rover.travelLog.push([rover.x,rover.y]);
-        grid[rover.x][rover.y]=2;}
+        grid[rover.x][rover.y]=0;   // No Rover in the old cell
+        rover.y-=1; // Update coord
+        rover.travelLog.push([rover.x,rover.y]);  // Update travel log
+        grid[rover.x][rover.y]=2;}  //Rover in the new cell
 
-        else if (grid[rover.x][rover.y-1]==2){
+        else if (grid[rover.x][rover.y-1]==2){ 
 
           console.log("Error. There is another Rover!");}
         
@@ -262,8 +263,8 @@ function moveBackward(rover,grid){
   
 }
 
-function testMovement(listRovers,movements,grid){
-
+function testMovement(listRovers,movements,grid){ //Alternate movement for each Rover (each letter for each Rover in order. )
+                                                   //First letter for Rover 1, second letter for Rover 2...    
 var grid;
 
   
@@ -299,7 +300,7 @@ for (var j=0;j<=3;j++){
   
 }
 }
-function createGrid ()
+function createGrid ()  //Create a grid with random obstacles (20% posibilities obstacle in cell)
 {
   var randonNumber; 
   var grid = new Array();
